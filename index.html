@@ -53,7 +53,7 @@
     background:transparent; color:var(--cream); border-color:rgba(255,255,255,.72);
     box-shadow:5px 5px 0 0 var(--forest-mid);
   }
-  .btn-secondary:hover{ box-shadow:3px 3px 0 0 var(--forest-mid); }
+  .btn-secondary:hover{ box-shadow:3px 3px 0 0 var(--forest-mid); color:var(--cream); }
   .btn-ghost{
     background:transparent;color:var(--ink);border-color:var(--ink);box-shadow:5px 5px 0 0 var(--ink);
   }
@@ -67,6 +67,7 @@
   }
   nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
   .brand{ font-family:var(--font-mono); font-weight:650; font-size:15px; color:var(--cream); letter-spacing:.01em; text-decoration:none; }
+  .brand:hover{ color:var(--cream); }
   .brand span{ color:var(--coral); }
   .navlinks{ display:flex; align-items:center; gap:28px; }
   .navlinks a.navlink{ font-family:var(--font-mono); font-size:13px; color:var(--cream); text-decoration:none; }
@@ -206,7 +207,7 @@
 
   <div class="wrap">
     <div class="eyebrow hero-eyebrow">Community open source · Polo Fibonacci, Pisa</div>
-    <h1>Il tuo primo Hackathon inizia qui<br>parte da <em>qui.</em></h1>
+    <h1>Il tuo primo Hackathon<br>parte da <em>qui.</em></h1>
     <p class="lede">
       Un giorno intero per scoprire l'intelligenza artificiale open source facendo, non solo ascoltando: workshop pratici, mentor al tuo fianco e una community che ti aiuta a muovere i primi passi nel contribuire a un progetto vero.
     </p>
@@ -350,16 +351,17 @@
           </div>
 
           <div class="field full">
-            <label class="flabel">Che tool di IA conosci o hai già usato? <span class="opt">(opzionale)</span></label>
+            <label class="flabel">Che tool di IA conosci o hai già usato? <span class="req">*</span></label>
             <div class="pill-group" id="toolGroup">
               <label class="pill"><input type="checkbox" name="tool" value="ChatGPT">ChatGPT</label>
               <label class="pill"><input type="checkbox" name="tool" value="Claude">Claude</label>
               <label class="pill"><input type="checkbox" name="tool" value="GitHub Copilot">GitHub Copilot</label>
               <label class="pill"><input type="checkbox" name="tool" value="Google Gemini">Google Gemini</label>
-              <label class="pill"><input type="checkbox" name="tool" value="Generatori immagini (Midjourney, ecc.)">Generatori immagini</label>
-              <label class="pill"><input type="checkbox" name="tool" value="Nessuno / non li conosco">Nessuno / non li conosco</label>
+              <label class="pill"><input type="checkbox" name="tool" value="Generatori immagini">Generatori immagini</label>
+              <label class="pill"><input type="checkbox" name="tool" value="Nessuno">Nessuno / non li conosco</label>
+              <label class="pill"><input type="checkbox" name="tool" value="Altro">Altro</label>
             </div>
-            <input type="text" id="f-tool-altro" name="tool_altro" placeholder="Altro tool? scrivilo qui" style="margin-top:10px;">
+            <input type="text" id="f-tool-altro" name="tool_altro" placeholder="Se hai scelto \"Altro\", scrivi qui quale" style="margin-top:10px;">
           </div>
 
           <div class="field full">
@@ -458,6 +460,7 @@
     if (!getValue('cognome')) ok = false;
     if (!getValue('email')) ok = false;
     if (!getValue('giorno').length) ok = false;
+    if (!getValue('tool').length) ok = false;
     if (!getValue('livello_ia')) ok = false;
     if (!getValue('taglia')) ok = false;
     return ok;
