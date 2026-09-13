@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&family=Martian+Mono:wght@400;500;700&display=swap">
+  <style>
+    :root{
+      --cream:#F7F7F2; --sage:#E4E5DA; --ink:#10201D; --forest-mid:#3D5F58;
+      --coral:#E97B77; --blue:#8BB2DE;
+      --font-display:'Barlow Semi Condensed','Helvetica Neue',Helvetica,Arial,sans-serif;
+      --font-body:'Inter',ui-sans-serif,system-ui,sans-serif;
+      --font-mono:'Martian Mono',ui-monospace,SFMono-Regular,monospace;
+    }
+    body{margin:0;}
+    a{color:var(--forest-mid);} a:hover{color:var(--ink);}
+    .eyebrow{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:600;color:var(--forest-mid);}
+    .cap{font-family:var(--font-mono);font-size:11px;color:var(--forest-mid);text-transform:uppercase;letter-spacing:.05em;}
+    .block{display:flex;flex-direction:column;gap:8px;padding-bottom:22px;border-bottom:2px solid var(--sage);}
+  </style>
+</helmet>
+
+<div style="width:700px;height:900px;background:var(--cream);box-sizing:border-box;padding:48px;font-family:var(--font-body);display:flex;flex-direction:column;gap:22px;">
+
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div class="eyebrow">Fondamenta</div>
+    <h2 style="margin:0;font-family:var(--font-display);font-weight:800;font-size:40px;color:var(--ink);letter-spacing:-0.01em;">Tipografia</h2>
+  </div>
+
+  <div class="block">
+    <div class="cap">Display — Barlow Semi Condensed · 800</div>
+    <div style="font-family:var(--font-display);font-weight:800;font-size:56px;line-height:0.95;letter-spacing:-0.01em;color:var(--ink);">Aa Bb 2026</div>
+    <div class="cap">56 / 800 — headline principali, due toni con <span style="color:var(--coral);">accento</span></div>
+  </div>
+
+  <div class="block">
+    <div class="cap">Display — Barlow Semi Condensed · 700</div>
+    <div style="font-family:var(--font-display);font-weight:700;font-size:32px;line-height:1;color:var(--ink);">Titoli di sezione</div>
+    <div class="cap">32 / 700 — heading di secondo livello</div>
+  </div>
+
+  <div class="block">
+    <div class="cap">Body — Inter · 400 / 500</div>
+    <div style="font-family:var(--font-body);font-weight:400;font-size:16px;line-height:1.6;color:var(--ink);">
+      Testo di paragrafo per descrizioni ed eventi. <strong style="font-weight:600;">Le parole chiave</strong> possono usare il peso 600 per enfasi inline.
+    </div>
+    <div class="cap">16 / 400–600 — line-height 1.6</div>
+  </div>
+
+  <div class="block">
+    <div class="cap">UI Mono — Martian Mono · 400 / 700</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="font-family:var(--font-mono);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--forest-mid);">Eyebrow label</div>
+      <div style="font-family:var(--font-mono);font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink);">Testo bottone</div>
+      <div style="font-family:var(--font-mono);font-weight:400;font-size:13px;color:var(--ink);">nav.link — 13px / 400</div>
+    </div>
+    <div class="cap">Sempre uppercase per label e bottoni, tracking largo</div>
+  </div>
+
+  <div style="margin-top:auto;padding-top:16px;display:flex;flex-direction:column;gap:6px;">
+    <div class="eyebrow">Uso</div>
+    <div style="font-family:var(--font-body);font-size:13px;line-height:1.6;color:var(--forest-mid);">
+      Barlow Semi Condensed solo per headline (peso 700–800). Inter per ogni testo lungo. Martian Mono per tutto ciò che è interfaccia: bottoni, nav, eyebrow, badge.
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

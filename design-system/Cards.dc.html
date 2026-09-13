@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@700;800&family=Inter:wght@400;600&family=Martian+Mono:wght@400;600;650&display=swap">
+  <style>
+    :root{
+      --cream:#F7F7F2; --sage:#E4E5DA; --ink:#10201D;
+      --forest:#2E4742; --forest-mid:#3D5F58;
+      --coral:#E97B77; --coral-shadow:#671912; --gold:#F5B726;
+      --font-display:'Barlow Semi Condensed','Helvetica Neue',Helvetica,Arial,sans-serif;
+      --font-body:'Inter',ui-sans-serif,system-ui,sans-serif;
+      --font-mono:'Martian Mono',ui-monospace,SFMono-Regular,monospace;
+    }
+    body{margin:0;}
+    a{color:var(--forest-mid);} a:hover{color:var(--ink);}
+    .eyebrow{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:600;color:var(--forest-mid);}
+    .card{border:2px solid var(--ink);padding:22px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;}
+    .card-eyebrow{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:650;}
+    .card-title{font-family:var(--font-display);font-weight:800;font-size:24px;line-height:1.05;}
+    .card-body{font-family:var(--font-body);font-size:14px;line-height:1.55;}
+  </style>
+</helmet>
+
+<div style="width:700px;height:900px;background:var(--cream);box-sizing:border-box;padding:48px;font-family:var(--font-body);display:flex;flex-direction:column;gap:22px;">
+
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div class="eyebrow">Componenti</div>
+    <h2 style="margin:0;font-family:var(--font-display);font-weight:800;font-size:40px;color:var(--ink);letter-spacing:-0.01em;">Card</h2>
+  </div>
+
+  <div class="card" style="background:var(--cream);box-shadow:6px 6px 0 0 var(--coral-shadow);">
+    <div class="card-eyebrow" style="color:var(--forest-mid);">Evento</div>
+    <div class="card-title" style="color:var(--ink);">Hack Night</div>
+    <div class="card-body" style="color:var(--ink);">Serata di contribuzione open source guidata: porta il tuo laptop, trova un progetto, apri la tua prima PR con l'aiuto dei mentor.</div>
+    <a href="#" style="font-family:var(--font-mono);font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.04em;margin-top:4px;">Iscriviti →</a>
+  </div>
+
+  <div class="card" style="background:var(--gold);box-shadow:6px 6px 0 0 var(--coral-shadow);">
+    <div class="card-eyebrow" style="color:#5B3B00;">In evidenza</div>
+    <div class="card-title" style="color:var(--ink);">Workshop AI open source</div>
+    <div class="card-body" style="color:var(--ink);">Un pomeriggio per costruire il tuo primo agente con modelli open-weight. Posti limitati, snack e swag inclusi.</div>
+    <a href="#" style="font-family:var(--font-mono);font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.04em;color:var(--ink);margin-top:4px;">Prenota il posto →</a>
+  </div>
+
+  <div class="card" style="background:var(--forest);border-color:var(--forest);box-shadow:6px 6px 0 0 #1B2E29;">
+    <div class="card-eyebrow" style="color:#F6C4C1;">Community</div>
+    <div class="card-title" style="color:var(--cream);">Diventa un fest host</div>
+    <div class="card-body" style="color:#D7E0DC;">Porta Hacktoberfest nella tua città: forniamo materiali, kit e supporto per organizzare un evento di una giornata.</div>
+    <a href="#" style="font-family:var(--font-mono);font-size:12px;font-weight:650;text-transform:uppercase;letter-spacing:.04em;color:var(--coral);margin-top:4px;">Candidati →</a>
+  </div>
+
+  <div style="margin-top:auto;padding-top:4px;display:flex;flex-direction:column;gap:6px;">
+    <div class="eyebrow">Uso</div>
+    <div style="font-family:var(--font-body);font-size:13px;line-height:1.6;color:var(--forest-mid);">
+      Stessa ombra dura su ogni variante. Cream per contenuto standard, Gold per evidenziare un singolo elemento, Forest per call-to-action legate alla community.
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 900, "h": 600 },
+    { "file": "Colors.dc.html", "x": 980, "y": 0, "w": 700, "h": 900 },
+    { "file": "Typography.dc.html", "x": 1760, "y": 0, "w": 700, "h": 900 },
+    { "file": "Buttons.dc.html", "x": 0, "y": 1020, "w": 700, "h": 900 },
+    { "file": "Cards.dc.html", "x": 780, "y": 1020, "w": 700, "h": 900 },
+    { "file": "Patterns.dc.html", "x": 1560, "y": 1020, "w": 700, "h": 700 },
+    { "file": "Hero.dc.html", "x": 0, "y": 2040, "w": 1200, "h": 800 }
+  ],
+  "launch": { "view": "focused", "file": "Main.dc.html" }
+}

@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@700;800&family=Inter:wght@400;500&family=Martian+Mono:wght@400;600&display=swap">
+  <style>
+    :root{
+      --cream:#F7F7F2; --cream-alt:#F2F2EB; --sage:#E4E5DA;
+      --ink:#10201D; --forest:#2E4742; --forest-mid:#3D5F58;
+      --coral:#E97B77; --coral-shadow:#671912;
+      --blue:#8BB2DE; --gold:#F5B726; --red:#E53927;
+      --font-display:'Barlow Semi Condensed','Helvetica Neue',Helvetica,Arial,sans-serif;
+      --font-body:'Inter',ui-sans-serif,system-ui,sans-serif;
+      --font-mono:'Martian Mono',ui-monospace,SFMono-Regular,monospace;
+    }
+    body{margin:0;}
+    a{color:var(--forest-mid);} a:hover{color:var(--ink);}
+    .eyebrow{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:600;color:var(--forest-mid);}
+    .swname{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.06em;font-size:11px;font-weight:600;color:var(--ink);}
+    .swhex{font-family:var(--font-mono);font-size:11px;color:var(--forest-mid);}
+  </style>
+</helmet>
+
+<div style="width:700px;height:900px;background:var(--cream);box-sizing:border-box;padding:48px;font-family:var(--font-body);display:flex;flex-direction:column;gap:28px;">
+
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div class="eyebrow">Fondamenta</div>
+    <h2 style="margin:0;font-family:var(--font-display);font-weight:800;font-size:40px;color:var(--ink);letter-spacing:-0.01em;">Colori</h2>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div class="eyebrow">Neutri</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="height:84px;background:#F7F7F2;border:2px solid var(--ink);"></div>
+        <div class="swname">Cream</div><div class="swhex">#F7F7F2</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="height:84px;background:#F2F2EB;border:2px solid var(--ink);"></div>
+        <div class="swname">Cream Alt</div><div class="swhex">#F2F2EB</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="height:84px;background:#E4E5DA;border:2px solid var(--ink);"></div>
+        <div class="swname">Sage</div><div class="swhex">#E4E5DA</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="height:84px;background:#10201D;"></div>
+        <div class="swname">Ink</div><div class="swhex">#10201D</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div class="eyebrow">Verde scuro (sezioni dark)</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="height:84px;background:#2E4742;"></div>
+        <div class="swname">Forest</div><div class="swhex">#2E4742</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="height:84px;background:#3D5F58;"></div>
+        <div class="swname">Forest Mid</div><div class="swhex">#3D5F58</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div class="eyebrow">Primario</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="height:84px;background:#E97B77;border:2px solid var(--ink);"></div>
+        <div class="swname">Coral</div><div class="swhex">#E97B77</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="height:84px;background:#671912;"></div>
+        <div class="swname">Coral Shadow</div><div class="swhex">#671912</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div class="eyebrow">Accenti</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="height:84px;background:#8BB2DE;border:2px solid var(--ink);"></div>
+        <div class="swname">Blue</div><div class="swhex">#8BB2DE</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="height:84px;background:#F5B726;border:2px solid var(--ink);"></div>
+        <div class="swname">Gold</div><div class="swhex">#F5B726</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="height:84px;background:#E53927;border:2px solid var(--ink);"></div>
+        <div class="swname">Red</div><div class="swhex">#E53927</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:auto;padding-top:20px;border-top:2px solid var(--sage);display:flex;flex-direction:column;gap:6px;">
+    <div class="eyebrow">Uso</div>
+    <div style="font-family:var(--font-body);font-size:13px;line-height:1.6;color:var(--forest-mid);">
+      Cream come base chiara, Forest per sezioni dark full-bleed, Coral per azioni primarie. Blue/Gold/Red solo come accenti puntuali — mai più di due per composizione.
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

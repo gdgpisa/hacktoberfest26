@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Martian+Mono:wght@400;500;600;700&display=swap">
+  <style>
+    :root{
+      --cream:#F7F7F2; --cream-alt:#F2F2EB; --sage:#E4E5DA;
+      --ink:#10201D; --forest:#2E4742; --forest-mid:#3D5F58;
+      --coral:#E97B77; --coral-shadow:#671912;
+      --blue:#8BB2DE; --gold:#F5B726; --red:#E53927;
+      --font-display:'Barlow Semi Condensed','Helvetica Neue',Helvetica,Arial,sans-serif;
+      --font-body:'Inter',ui-sans-serif,system-ui,sans-serif;
+      --font-mono:'Martian Mono',ui-monospace,SFMono-Regular,monospace;
+    }
+    body{margin:0;}
+    a{color:var(--coral);} a:hover{color:var(--gold);}
+    .eyebrow{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:600;}
+  </style>
+</helmet>
+
+<div style="width:900px;height:600px;background:var(--forest);position:relative;overflow:hidden;box-sizing:border-box;font-family:var(--font-body);">
+
+  <div style="position:absolute;top:0;left:0;width:126px;height:126px;
+    background-image:
+      linear-gradient(45deg,var(--coral) 25%,transparent 25%,transparent 75%,var(--coral) 75%),
+      linear-gradient(45deg,var(--coral) 25%,transparent 25%,transparent 75%,var(--coral) 75%);
+    background-size:28px 28px;background-position:0 0,14px 14px;
+    -webkit-mask-image:linear-gradient(135deg,black 0%,black 55%,transparent 78%);
+    mask-image:linear-gradient(135deg,black 0%,black 55%,transparent 78%);"></div>
+  <div style="position:absolute;top:14px;left:14px;width:18px;height:18px;background:var(--gold);"></div>
+  <div style="position:absolute;top:14px;left:70px;width:18px;height:18px;background:var(--red);"></div>
+
+  <div style="position:absolute;bottom:0;right:0;width:126px;height:126px;
+    background-image:
+      linear-gradient(45deg,var(--coral) 25%,transparent 25%,transparent 75%,var(--coral) 75%),
+      linear-gradient(45deg,var(--coral) 25%,transparent 25%,transparent 75%,var(--coral) 75%);
+    background-size:28px 28px;background-position:0 0,14px 14px;
+    -webkit-mask-image:linear-gradient(-45deg,black 0%,black 55%,transparent 78%);
+    mask-image:linear-gradient(-45deg,black 0%,black 55%,transparent 78%);"></div>
+  <div style="position:absolute;bottom:14px;right:14px;width:18px;height:18px;background:var(--gold);"></div>
+  <div style="position:absolute;bottom:14px;right:70px;width:18px;height:18px;background:var(--red);"></div>
+
+  <div style="position:relative;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:56px 72px;box-sizing:border-box;">
+
+    <div class="eyebrow" style="color:#F6C4C1;">Design System · v1</div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:800;font-size:76px;line-height:0.94;letter-spacing:-0.01em;color:var(--cream);">
+        GDG Pisa<br><span style="color:var(--coral);">Hacktoberfest</span>
+      </h1>
+      <p style="margin:0;max-width:520px;font-family:var(--font-body);font-size:16px;line-height:1.6;color:#D7E0DC;">
+        Palette, tipografia, componenti e pattern decorativi per comunicare gli eventi Hacktoberfest di GDG Pisa con un linguaggio visivo coerente — ispirato all'estetica retro e neobrutalista della developer community open source.
+      </p>
+    </div>
+
+    <div class="eyebrow" style="color:#F6C4C1;display:flex;gap:14px;flex-wrap:wrap;">
+      <span>Colori</span><span style="color:var(--coral);">·</span>
+      <span>Tipografia</span><span style="color:var(--coral);">·</span>
+      <span>Bottoni</span><span style="color:var(--coral);">·</span>
+      <span>Card</span><span style="color:var(--coral);">·</span>
+      <span>Pattern</span><span style="color:var(--coral);">·</span>
+      <span>Hero applicato</span>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@800&family=Inter:wght@400&family=Martian+Mono:wght@400;600&display=swap">
+  <style>
+    :root{
+      --cream:#F7F7F2; --ink:#10201D; --forest:#2E4742;
+      --coral:#E97B77; --gold:#F5B726; --red:#E53927;
+      --font-display:'Barlow Semi Condensed','Helvetica Neue',Helvetica,Arial,sans-serif;
+      --font-body:'Inter',ui-sans-serif,system-ui,sans-serif;
+      --font-mono:'Martian Mono',ui-monospace,SFMono-Regular,monospace;
+    }
+    body{margin:0;}
+    a{color:var(--coral);} a:hover{color:var(--gold);}
+    .eyebrow{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:600;}
+    .pixel{
+      background-image:
+        linear-gradient(45deg,var(--coral) 25%,transparent 25%,transparent 75%,var(--coral) 75%),
+        linear-gradient(45deg,var(--coral) 25%,transparent 25%,transparent 75%,var(--coral) 75%);
+      background-position:0 0,14px 14px;
+    }
+  </style>
+</helmet>
+
+<div style="width:700px;height:700px;background:var(--forest);box-sizing:border-box;padding:48px;font-family:var(--font-body);display:flex;flex-direction:column;gap:26px;position:relative;overflow:hidden;">
+
+  <div style="display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;">
+    <div class="eyebrow" style="color:#F6C4C1;">Pattern decorativo</div>
+    <h2 style="margin:0;font-family:var(--font-display);font-weight:800;font-size:36px;color:var(--cream);letter-spacing:-0.01em;">Pixel corner</h2>
+  </div>
+
+  <div style="display:flex;gap:24px;align-items:flex-end;position:relative;z-index:1;">
+    <div class="pixel" style="width:168px;height:168px;background-size:28px 28px;"></div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;gap:14px;">
+        <div style="width:22px;height:22px;background:var(--gold);"></div>
+        <div style="width:22px;height:22px;background:var(--red);"></div>
+        <div style="width:22px;height:22px;background:var(--cream);"></div>
+      </div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:#B9C7C2;max-width:220px;line-height:1.6;">
+        Scacchiera diagonale coral + blocchi isolati oro/rosso/cream come accento puntuale.
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--cream);padding:20px 24px;box-sizing:border-box;position:relative;z-index:1;">
+    <div style="font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:600;color:var(--forest);">Eyebrow — su fondo chiaro</div>
+  </div>
+  <div style="background:var(--forest);border:2px solid rgba(255,255,255,0.2);padding:20px 24px;box-sizing:border-box;position:relative;z-index:1;">
+    <div style="font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:600;color:#F6C4C1;">Eyebrow — su fondo dark</div>
+  </div>
+
+  <div style="margin-top:auto;position:relative;z-index:1;">
+    <div class="eyebrow" style="color:#F6C4C1;">Uso</div>
+    <div style="font-family:var(--font-body);font-size:13px;line-height:1.6;color:#B9C7C2;margin-top:6px;">
+      Solo agli angoli di hero e footer, mai oltre il 15% dell'area della sezione. Non usare al centro del contenuto.
+    </div>
+  </div>
+
+  <div class="pixel" style="position:absolute;bottom:-40px;right:-40px;width:180px;height:180px;background-size:24px 24px;opacity:0.9;
+    -webkit-mask-image:radial-gradient(circle at bottom right, black 0%, black 50%, transparent 72%);
+    mask-image:radial-gradient(circle at bottom right, black 0%, black 50%, transparent 72%);"></div>
+
+</div>
+</x-dc>
+</body>
+</html>
