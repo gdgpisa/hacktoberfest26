@@ -1,0 +1,509 @@
+<title>GDG Pisa Hacktoberfest</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Martian+Mono:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --cream:#F7F7F2; --cream-alt:#F2F2EB; --sage:#E4E5DA;
+    --ink:#10201D; --forest:#2E4742; --forest-mid:#3D5F58;
+    --coral:#E97B77; --coral-shadow:#671912;
+    --blue:#8BB2DE; --gold:#F5B726; --red:#E53927;
+    --font-display:'Barlow Semi Condensed','Helvetica Neue',Helvetica,Arial,sans-serif;
+    --font-body:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;
+    --font-mono:'Martian Mono',ui-monospace,SFMono-Regular,'Roboto Mono',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--cream);color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation:none !important;transition:none !important;} }
+
+  a{color:var(--coral);}
+  a:hover{color:var(--forest);}
+  h1,h2,h3{font-family:var(--font-display);font-weight:800;letter-spacing:-0.01em;text-wrap:balance;margin:0;}
+  .wrap{max-width:1120px;margin:0 auto;padding-left:32px;padding-right:32px;}
+  @media (max-width:720px){ .wrap{padding-left:20px;padding-right:20px;} }
+
+  .eyebrow{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:600;}
+
+  /* pixel corner motif */
+  .pixel{
+    background-image:
+      linear-gradient(45deg,var(--coral) 25%,transparent 25%,transparent 75%,var(--coral) 75%),
+      linear-gradient(45deg,var(--coral) 25%,transparent 25%,transparent 75%,var(--coral) 75%);
+    background-position:0 0,14px 14px; background-size:28px 28px;
+  }
+
+  /* buttons */
+  .btn{
+    font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.04em;
+    font-weight:650;font-size:14px;padding:15px 26px;border-radius:0;
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    border:2px solid var(--ink); text-decoration:none;
+    transition:transform .12s ease, box-shadow .12s ease;
+    box-shadow:5px 5px 0 0 var(--coral-shadow);
+    background:var(--coral); color:var(--ink);
+  }
+  .btn:hover{ transform:translate(2px,2px); box-shadow:3px 3px 0 0 var(--coral-shadow); }
+  .btn:active{ transform:translate(5px,5px); box-shadow:none; }
+  .btn-secondary{
+    background:transparent; color:var(--cream); border-color:rgba(255,255,255,.72);
+    box-shadow:5px 5px 0 0 var(--forest-mid);
+  }
+  .btn-secondary:hover{ box-shadow:3px 3px 0 0 var(--forest-mid); }
+  .btn-ghost{
+    background:transparent;color:var(--ink);border-color:var(--ink);box-shadow:5px 5px 0 0 var(--ink);
+  }
+  .btn-ghost:hover{ box-shadow:3px 3px 0 0 var(--ink); }
+  .btn[disabled]{ opacity:.5; cursor:not-allowed; box-shadow:none; transform:none; }
+
+  /* nav */
+  header{
+    position:sticky; top:0; z-index:20; background:var(--forest);
+    border-bottom:1px solid rgba(255,255,255,.12);
+  }
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
+  .brand{ font-family:var(--font-mono); font-weight:650; font-size:15px; color:var(--cream); letter-spacing:.01em; text-decoration:none; }
+  .brand span{ color:var(--coral); }
+  .navlinks{ display:flex; align-items:center; gap:28px; }
+  .navlinks a.navlink{ font-family:var(--font-mono); font-size:13px; color:var(--cream); text-decoration:none; }
+  .navlinks a.navlink:hover{ color:var(--coral); }
+  @media (max-width:640px){ .navlinks a.navlink{ display:none; } }
+
+  /* hero */
+  .hero{ position:relative; background:var(--forest); overflow:hidden; }
+  .hero .wrap{ position:relative; z-index:1; padding-top:88px; padding-bottom:96px; }
+  .hero-corner-tl{ position:absolute; top:0; left:0; width:170px; height:170px;
+    -webkit-mask-image:linear-gradient(135deg,black 0%,black 50%,transparent 75%);
+    mask-image:linear-gradient(135deg,black 0%,black 50%,transparent 75%); }
+  .hero-corner-br{ position:absolute; bottom:0; right:0; width:170px; height:170px;
+    -webkit-mask-image:linear-gradient(-45deg,black 0%,black 50%,transparent 75%);
+    mask-image:linear-gradient(-45deg,black 0%,black 50%,transparent 75%); }
+  .dot{ position:absolute; width:20px; height:20px; }
+
+  .hero-eyebrow{ color:#F6C4C1; margin-bottom:22px; }
+  .hero h1{ font-size:clamp(40px,6.4vw,80px); line-height:0.96; color:var(--cream); max-width:820px; }
+  .hero h1 em{ font-style:normal; color:var(--blue); }
+  .hero p.lede{ font-size:18px; line-height:1.6; color:#D7E0DC; max-width:560px; margin:26px 0 0; }
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; margin-top:34px; }
+
+  .infobar{ margin-top:44px; display:flex; gap:0; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.16); padding-top:26px; }
+  .infobar .item{ flex:1 1 200px; padding-right:24px; }
+  .infobar .item + .item{ border-left:1px solid rgba(255,255,255,.16); padding-left:24px; }
+  .infobar .label{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:#8FA39C; margin-bottom:8px; }
+  .infobar .value{ font-family:var(--font-display); font-weight:700; font-size:20px; color:var(--cream); }
+
+  /* section shell */
+  section{ padding:92px 0; }
+  .section-head{ display:flex; flex-direction:column; gap:14px; max-width:640px; margin-bottom:52px; }
+  .section-head .eyebrow{ color:var(--forest-mid); }
+  .section-head h2{ font-size:clamp(30px,4vw,44px); color:var(--ink); }
+  .section-head p{ font-family:var(--font-body); font-size:16px; line-height:1.6; color:var(--forest-mid); margin:0; }
+
+  /* benefit cards */
+  .benefits{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  @media (max-width:900px){ .benefits{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .benefits{ grid-template-columns:1fr; } }
+  .card{ background:var(--cream); border:2px solid var(--ink); box-shadow:6px 6px 0 0 var(--coral-shadow); padding:26px; display:flex; flex-direction:column; gap:12px; }
+  .card .num{ font-family:var(--font-mono); font-size:12px; color:var(--forest-mid); }
+  .card h3{ font-size:21px; }
+  .card p{ font-size:14px; line-height:1.55; color:var(--forest-mid); margin:0; }
+  .card svg{ width:26px; height:26px; }
+
+  /* when/where */
+  .whenwhere{ background:var(--sage); }
+  .ww-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:start; }
+  @media (max-width:840px){ .ww-grid{ grid-template-columns:1fr; } }
+  .vote-card{ background:var(--cream); border:2px solid var(--ink); box-shadow:6px 6px 0 0 var(--coral-shadow); padding:28px; display:flex; flex-direction:column; gap:16px; }
+  .vote-row{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; border-top:1px solid var(--sage); }
+  .vote-row:first-of-type{ border-top:none; }
+  .vote-day{ font-family:var(--font-display); font-weight:800; font-size:22px; }
+  .vote-note{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--forest-mid); }
+  .facts{ display:flex; flex-direction:column; gap:22px; }
+  .fact{ display:flex; gap:16px; }
+  .fact svg{ width:24px; height:24px; flex:none; color:var(--forest); }
+  .fact .t{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--forest-mid); margin-bottom:4px; }
+  .fact .v{ font-family:var(--font-body); font-weight:600; font-size:16px; color:var(--ink); }
+
+  /* form */
+  .formsec{ background:var(--forest); }
+  .form-shell{ background:var(--cream); border:2px solid var(--ink); box-shadow:8px 8px 0 0 var(--coral-shadow); padding:44px; }
+  @media (max-width:640px){ .form-shell{ padding:26px; } }
+  .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  @media (max-width:640px){ .form-grid{ grid-template-columns:1fr; } }
+  .field{ display:flex; flex-direction:column; gap:8px; }
+  .field.full{ grid-column:1 / -1; }
+  label.flabel{ font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--forest-mid); }
+  label.flabel .req{ color:var(--red); }
+  label.flabel .opt{ color:#9AA39D; text-transform:none; letter-spacing:0; font-weight:400; }
+  input[type="text"], input[type="email"], textarea, select{
+    font-family:var(--font-body); font-size:15px; color:var(--ink);
+    background:var(--cream); border:2px solid var(--ink); border-radius:0;
+    padding:13px 14px; outline:none; width:100%;
+  }
+  input::placeholder, textarea::placeholder{ color:#9AA39D; }
+  input:focus, textarea:focus, select:focus{ outline:3px solid var(--blue); outline-offset:1px; }
+  textarea{ resize:vertical; min-height:90px; font-family:var(--font-body); }
+
+  .pill-group{ display:flex; flex-wrap:wrap; gap:10px; }
+  .pill{
+    font-family:var(--font-mono); font-size:13px; text-transform:uppercase; letter-spacing:.03em;
+    padding:11px 16px; border:2px solid var(--ink); background:var(--cream); color:var(--ink);
+    cursor:pointer; user-select:none; transition:transform .1s ease;
+  }
+  .pill input{ position:absolute; opacity:0; width:0; height:0; }
+  .pill:has(input:checked){ background:var(--ink); color:var(--cream); }
+  .pill:has(input:focus-visible){ outline:3px solid var(--blue); outline-offset:2px; }
+
+  .scale-row{ display:flex; gap:10px; }
+  .scale-pill{
+    flex:1; text-align:center; font-family:var(--font-mono); font-weight:650; font-size:15px;
+    padding:14px 8px; border:2px solid var(--ink); background:var(--cream); color:var(--ink); cursor:pointer;
+  }
+  .scale-pill:has(input:checked){ background:var(--coral); }
+  .scale-pill input{ position:absolute; opacity:0; width:0; height:0; }
+  .scale-caption{ display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:10px; color:var(--forest-mid); text-transform:uppercase; letter-spacing:.05em; margin-top:6px; }
+
+  .hint{ font-family:var(--font-body); font-size:12.5px; color:#9AA39D; }
+  .submit-row{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:8px; }
+  .privacy{ font-family:var(--font-body); font-size:12.5px; color:var(--forest-mid); max-width:420px; }
+
+  .success{ display:none; flex-direction:column; align-items:flex-start; gap:14px; padding:12px 0; }
+  .success.show{ display:flex; }
+  .success h3{ font-size:26px; }
+  .success p{ font-family:var(--font-body); font-size:15px; color:var(--forest-mid); max-width:460px; margin:0; }
+  .form-shell.submitted form{ display:none; }
+
+  footer{ background:var(--forest); padding:36px 0; }
+  .foot-row{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .foot-row .eyebrow{ color:#8FA39C; }
+</style>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#top">GDG PISA <span>HACKTOBERFEST</span></a>
+      <div class="navlinks">
+        <a class="navlink" href="#perche">Perché partecipare</a>
+        <a class="navlink" href="#quando">Data e luogo</a>
+        <a class="btn" href="#iscrizione" style="padding:10px 18px;font-size:12px;box-shadow:3px 3px 0 0 var(--coral-shadow);">Iscriviti</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div id="top"></div>
+<section class="hero" style="padding:0;">
+  <div class="pixel hero-corner-tl"></div>
+  <div class="dot" style="top:16px;left:16px;background:var(--gold);"></div>
+  <div class="dot" style="top:16px;left:72px;background:var(--red);"></div>
+  <div class="pixel hero-corner-br"></div>
+  <div class="dot" style="bottom:16px;right:16px;background:var(--gold);"></div>
+  <div class="dot" style="bottom:16px;right:72px;background:var(--red);"></div>
+
+  <div class="wrap">
+    <div class="eyebrow hero-eyebrow">Community open source · Polo Fibonacci, Pisa</div>
+    <h1>La tua prima pull request<br>parte da <em>qui.</em></h1>
+    <p class="lede">
+      Un giorno intero per scoprire l'intelligenza artificiale open source facendo, non solo ascoltando: workshop pratici, mentor al tuo fianco e una community che ti aiuta a muovere i primi passi nel contribuire a un progetto vero.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="#iscrizione">Preiscriviti ora →</a>
+      <a class="btn btn-secondary" href="#perche">Scopri il programma</a>
+    </div>
+
+    <div class="infobar">
+      <div class="item">
+        <div class="label">Quando</div>
+        <div class="value">24 o 25 ottobre</div>
+      </div>
+      <div class="item">
+        <div class="label">Orario</div>
+        <div class="value">10:00 – 17:00</div>
+      </div>
+      <div class="item">
+        <div class="label">Dove</div>
+        <div class="value">Polo Fibonacci, Pisa</div>
+      </div>
+      <div class="item">
+        <div class="label">Costo</div>
+        <div class="value">Gratuito</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="perche">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Perché partecipare</div>
+      <h2>Non un altro evento da ascoltare in silenzio.</h2>
+      <p>Hacktoberfest GDG Pisa è pensato per chi vuole mettere le mani in pasta — qualsiasi sia il tuo livello di partenza.</p>
+    </div>
+
+    <div class="benefits">
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.6"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></svg>
+        <h3>Impara facendo</h3>
+        <p>Laboratori pratici su tool e agenti IA open source, con esercizi guidati passo dopo passo.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.6"><path d="M9 6a3 3 0 116 0 3 3 0 01-6 0zM4 20c0-3.3 2.7-6 6-6M14 14c3.3 0 6 2.7 6 6"/><path d="M17 8l1.5 1.5L21 7"/></svg>
+        <h3>Il tuo primo contributo</h3>
+        <p>Apri la tua prima pull request open source con un mentor che ti segue dall'idea al merge.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.6"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="16" r="3"/><path d="M10.5 9.5l3 3"/></svg>
+        <h3>Networking reale</h3>
+        <p>Incontra studenti, sviluppatori e aziende della community tech di Pisa, di persona.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.6"><path d="M4 8l8-4 8 4-8 4-8-4z"/><path d="M4 8v8l8 4 8-4V8"/></svg>
+        <h3>Snack, swag e maglietta</h3>
+        <p>Pausa pranzo e snack inclusi durante tutta la giornata, più la maglietta ufficiale dell'evento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quando" class="whenwhere">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Data e luogo</div>
+      <h2>Scegliamo insieme la data.</h2>
+      <p>L'evento si terrà in un solo giorno tra sabato 24 e domenica 25 ottobre — decidiamo insieme, in base a chi può esserci quando. Indica la tua disponibilità nel modulo qui sotto.</p>
+    </div>
+
+    <div class="ww-grid">
+      <div class="vote-card">
+        <div class="eyebrow" style="color:var(--forest-mid);">Le due date candidate</div>
+        <div class="vote-row">
+          <div class="vote-day">Sabato 24 ottobre</div>
+          <div class="vote-note">10:00 – 17:00</div>
+        </div>
+        <div class="vote-row">
+          <div class="vote-day">Domenica 25 ottobre</div>
+          <div class="vote-note">10:00 – 17:00</div>
+        </div>
+        <div class="hint" style="margin-top:4px;">La data con più disponibilità raccolte sarà quella definitiva. Ti avviseremo via email non appena confermata.</div>
+      </div>
+
+      <div class="facts">
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.2-7-11a7 7 0 1114 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+          <div><div class="t">Luogo</div><div class="v">Polo Fibonacci, Pisa</div></div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          <div><div class="t">Orario</div><div class="v">10:00 – 17:00</div></div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="0"/><path d="M3 9h18M8 3v3M16 3v3"/></svg>
+          <div><div class="t">Formato</div><div class="v">Giornata intera, ingresso libero</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="iscrizione" class="formsec">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" style="color:#F6C4C1;">Preiscrizione</div>
+      <h2 style="color:var(--cream);">I posti sono limitati. Assicurati il tuo.</h2>
+      <p style="color:#D7E0DC;">Due minuti per compilare, zero costi: la preiscrizione ci serve solo per organizzare al meglio la giornata — dalla data ai pasti alla taglia della tua maglietta.</p>
+    </div>
+
+    <div class="form-shell" id="formShell">
+      <form id="regForm" novalidate>
+        <div class="form-grid">
+
+          <div class="field">
+            <label class="flabel" for="f-nome">Nome <span class="req">*</span></label>
+            <input type="text" id="f-nome" name="nome" required autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label class="flabel" for="f-cognome">Cognome <span class="req">*</span></label>
+            <input type="text" id="f-cognome" name="cognome" required autocomplete="family-name">
+          </div>
+
+          <div class="field full">
+            <label class="flabel" for="f-email">Email <span class="req">*</span></label>
+            <input type="email" id="f-email" name="email" placeholder="nome@esempio.it" required autocomplete="email">
+          </div>
+
+          <div class="field full">
+            <label class="flabel">Quando ci saresti? <span class="req">*</span></label>
+            <div class="pill-group" id="dayGroup">
+              <label class="pill"><input type="checkbox" name="giorno" value="24 ottobre (sabato)">24 ottobre — sabato</label>
+              <label class="pill"><input type="checkbox" name="giorno" value="25 ottobre (domenica)">25 ottobre — domenica</label>
+            </div>
+            <div class="hint">Seleziona tutte le date in cui saresti disponibile: aiuta a scegliere quella definitiva.</div>
+          </div>
+
+          <div class="field full">
+            <label class="flabel" for="f-food">Allergie / preferenze alimentari <span class="opt">(opzionale)</span></label>
+            <textarea id="f-food" name="allergie" placeholder="Es. vegetariano/a, celiachia, intolleranza al lattosio, nessuna..."></textarea>
+          </div>
+
+          <div class="field full">
+            <label class="flabel">Che tool di IA conosci o hai già usato? <span class="opt">(opzionale)</span></label>
+            <div class="pill-group" id="toolGroup">
+              <label class="pill"><input type="checkbox" name="tool" value="ChatGPT">ChatGPT</label>
+              <label class="pill"><input type="checkbox" name="tool" value="Claude">Claude</label>
+              <label class="pill"><input type="checkbox" name="tool" value="GitHub Copilot">GitHub Copilot</label>
+              <label class="pill"><input type="checkbox" name="tool" value="Google Gemini">Google Gemini</label>
+              <label class="pill"><input type="checkbox" name="tool" value="Generatori immagini (Midjourney, ecc.)">Generatori immagini</label>
+              <label class="pill"><input type="checkbox" name="tool" value="Nessuno / non li conosco">Nessuno / non li conosco</label>
+            </div>
+            <input type="text" id="f-tool-altro" name="tool_altro" placeholder="Altro tool? scrivilo qui" style="margin-top:10px;">
+          </div>
+
+          <div class="field full">
+            <label class="flabel">Quanto ti senti esperto/a di IA? <span class="req">*</span></label>
+            <div class="scale-row" id="scaleGroup">
+              <label class="scale-pill"><input type="radio" name="livello_ia" value="1" required>1</label>
+              <label class="scale-pill"><input type="radio" name="livello_ia" value="2">2</label>
+              <label class="scale-pill"><input type="radio" name="livello_ia" value="3">3</label>
+              <label class="scale-pill"><input type="radio" name="livello_ia" value="4">4</label>
+              <label class="scale-pill"><input type="radio" name="livello_ia" value="5">5</label>
+            </div>
+            <div class="scale-caption"><span>Alle prime armi</span><span>Li uso ogni giorno</span></div>
+          </div>
+
+          <div class="field full">
+            <label class="flabel">Taglia maglietta <span class="req">*</span></label>
+            <div class="pill-group" id="sizeGroup">
+              <label class="pill"><input type="radio" name="taglia" value="XS" required>XS</label>
+              <label class="pill"><input type="radio" name="taglia" value="S">S</label>
+              <label class="pill"><input type="radio" name="taglia" value="M">M</label>
+              <label class="pill"><input type="radio" name="taglia" value="L">L</label>
+              <label class="pill"><input type="radio" name="taglia" value="XL">XL</label>
+              <label class="pill"><input type="radio" name="taglia" value="XXL">XXL</label>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn" id="submitBtn">Invia preiscrizione</button>
+          <div class="privacy">I dati raccolti sono usati esclusivamente per organizzare l'evento GDG Pisa Hacktoberfest.</div>
+        </div>
+      </form>
+
+      <div class="success" id="successBox">
+        <div class="eyebrow" style="color:var(--forest-mid);">Preiscrizione ricevuta</div>
+        <h3>Ci vediamo il 24 (o 25) ottobre!</h3>
+        <p>Grazie per esserti preiscritto/a — controlla la tua email: ti scriveremo appena la data definitiva sarà confermata, insieme a tutte le informazioni pratiche.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <a class="brand" href="#top">GDG PISA <span>HACKTOBERFEST</span></a>
+      <div class="eyebrow">Community open source · Pisa</div>
+    </div>
+  </div>
+</footer>
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" aria-hidden="true"></iframe>
+
+<script>
+  var GOOGLE_FORM = {
+    action: "https://docs.google.com/forms/d/e/1FAIpQLSeY3A5IFNJLEUWpgJLCkOgCWVE-bKewyn8zPr5if6jU-pH81w/formResponse",
+    entries: {
+      nome: "entry.1087205583",
+      cognome: "entry.1411406889",
+      email: "entry.484242646",
+      giorno: "entry.1038294511",      // checkbox group -> Google accepts repeated entry.<id> params
+      allergie: "entry.1482424399",
+      tool: "entry.1015356562",        // checkbox group -> repeated entry.<id> params
+      tool_altro: "entry.1015356562",  // "Altro" is a plain checkbox choice on the form, no native free-text field — free text rides the same entry as an extra value
+      livello_ia: "entry.563145096",
+      taglia: "entry.755037470"
+    }
+  };
+
+  var form = document.getElementById('regForm');
+  var shell = document.getElementById('formShell');
+  var successBox = document.getElementById('successBox');
+  var submitBtn = document.getElementById('submitBtn');
+
+  function collect(name){
+    return Array.prototype.slice.call(form.querySelectorAll('[name="' + name + '"]'));
+  }
+
+  function getValue(name){
+    var els = collect(name);
+    if (!els.length) return '';
+    if (els[0].type === 'checkbox') {
+      return els.filter(function(el){ return el.checked; }).map(function(el){ return el.value; });
+    }
+    if (els[0].type === 'radio') {
+      var checked = els.filter(function(el){ return el.checked; })[0];
+      return checked ? checked.value : '';
+    }
+    return els[0].value.trim();
+  }
+
+  function validate(){
+    var ok = true;
+    if (!getValue('nome')) ok = false;
+    if (!getValue('cognome')) ok = false;
+    if (!getValue('email')) ok = false;
+    if (!getValue('giorno').length) ok = false;
+    if (!getValue('livello_ia')) ok = false;
+    if (!getValue('taglia')) ok = false;
+    return ok;
+  }
+
+  function submitToGoogleForm(){
+    if (!GOOGLE_FORM.action) return; // not configured yet
+    var hidden = document.createElement('form');
+    hidden.action = GOOGLE_FORM.action;
+    hidden.method = 'POST';
+    hidden.target = 'hidden_iframe';
+    hidden.style.display = 'none';
+
+    function addField(entryId, value){
+      if (!entryId) return;
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = entryId;
+      input.value = value;
+      hidden.appendChild(input);
+    }
+
+    addField(GOOGLE_FORM.entries.nome, getValue('nome'));
+    addField(GOOGLE_FORM.entries.cognome, getValue('cognome'));
+    addField(GOOGLE_FORM.entries.email, getValue('email'));
+    getValue('giorno').forEach(function(v){ addField(GOOGLE_FORM.entries.giorno, v); });
+    addField(GOOGLE_FORM.entries.allergie, getValue('allergie'));
+    getValue('tool').forEach(function(v){ addField(GOOGLE_FORM.entries.tool, v); });
+    addField(GOOGLE_FORM.entries.tool_altro, getValue('tool_altro'));
+    addField(GOOGLE_FORM.entries.livello_ia, getValue('livello_ia'));
+    addField(GOOGLE_FORM.entries.taglia, getValue('taglia'));
+
+    document.body.appendChild(hidden);
+    hidden.submit();
+    setTimeout(function(){ hidden.remove(); }, 1000);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!validate()){
+      form.reportValidity();
+      return;
+    }
+    submitBtn.setAttribute('disabled', 'true');
+    submitToGoogleForm();
+    shell.classList.add('submitted');
+    successBox.classList.add('show');
+  });
+</script>
