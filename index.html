@@ -475,7 +475,7 @@
     hidden.style.display = 'none';
 
     function addField(entryId, value){
-      if (!entryId) return;
+      if (!entryId || value === '' || value == null) return; // never send an empty extra value: Google rejects the whole response if a required checkbox field gets a blank answer mixed in
       var input = document.createElement('input');
       input.type = 'hidden';
       input.name = entryId;
