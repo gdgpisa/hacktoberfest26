@@ -249,7 +249,7 @@
       <div class="card">
         <svg viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.6"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></svg>
         <h3>Impara facendo</h3>
-        <p>Laboratori pratici su tool e agenti IA open source, con esercizi guidati passo dopo passo.</p>
+        <p>Laboratori pratici su tool e agenti AI open source, con esercizi guidati passo dopo passo.</p>
       </div>
       <div class="card">
         <svg viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.6"><path d="M9 6a3 3 0 116 0 3 3 0 01-6 0zM4 20c0-3.3 2.7-6 6-6M14 14c3.3 0 6 2.7 6 6"/><path d="M17 8l1.5 1.5L21 7"/></svg>
@@ -367,11 +367,11 @@
           <div class="field full">
             <label class="flabel">Quanto ti senti esperto/a di IA? <span class="req">*</span></label>
             <div class="scale-row" id="scaleGroup">
-              <label class="scale-pill"><input type="radio" name="livello_ia" value="1" required>1</label>
-              <label class="scale-pill"><input type="radio" name="livello_ia" value="2">2</label>
-              <label class="scale-pill"><input type="radio" name="livello_ia" value="3">3</label>
-              <label class="scale-pill"><input type="radio" name="livello_ia" value="4">4</label>
-              <label class="scale-pill"><input type="radio" name="livello_ia" value="5">5</label>
+              <label class="scale-pill"><input type="radio" name="livello_ai" value="1" required>1</label>
+              <label class="scale-pill"><input type="radio" name="livello_ai" value="2">2</label>
+              <label class="scale-pill"><input type="radio" name="livello_ai" value="3">3</label>
+              <label class="scale-pill"><input type="radio" name="livello_ai" value="4">4</label>
+              <label class="scale-pill"><input type="radio" name="livello_ai" value="5">5</label>
             </div>
             <div class="scale-caption"><span>Alle prime armi</span><span>Li uso ogni giorno</span></div>
           </div>
@@ -427,7 +427,7 @@
       allergie: "entry.1482424399",
       tool: "entry.1015356562",        // checkbox group -> repeated entry.<id> params
       tool_altro: "entry.1015356562",  // "Altro" is a plain checkbox choice on the form, no native free-text field — free text rides the same entry as an extra value
-      livello_ia: "entry.563145096",
+      livello_ai: "entry.563145096",
       taglia: "entry.755037470"
     }
   };
@@ -461,7 +461,7 @@
     if (!getValue('email')) ok = false;
     if (!getValue('giorno').length) ok = false;
     if (!getValue('tool').length) ok = false;
-    if (!getValue('livello_ia')) ok = false;
+    if (!getValue('livello_ai')) ok = false;
     if (!getValue('taglia')) ok = false;
     return ok;
   }
@@ -490,7 +490,7 @@
     addField(GOOGLE_FORM.entries.allergie, getValue('allergie'));
     getValue('tool').forEach(function(v){ addField(GOOGLE_FORM.entries.tool, v); });
     addField(GOOGLE_FORM.entries.tool_altro, getValue('tool_altro'));
-    addField(GOOGLE_FORM.entries.livello_ia, getValue('livello_ia'));
+    addField(GOOGLE_FORM.entries.livello_ai, getValue('livello_ai'));
     addField(GOOGLE_FORM.entries.taglia, getValue('taglia'));
 
     document.body.appendChild(hidden);
